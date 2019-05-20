@@ -11,6 +11,13 @@ from nltk.stem import WordNetLemmatizer
 
 from sklearn.feature_extraction.text import CountVectorizer
 
+from sklearn.model_selection import train_test_split
+
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.ensemble import RandomForestClassifier
+
+from sklearn.metrics import confusion_matrix,accuracy_score
+
 review_text = []
 review_stars = []
 with open('yelp_review_part1.json') as f:
@@ -48,6 +55,18 @@ count_vectorize_transformer = CountVectorizer(analyzer=pre_processing).fit(data)
 print(count_vectorize_transformer.get_feature_names())
 
 data = count_vectorize_transformer.transform(data)
+
+data_training, data_test, target_training, target_test = train_test_split(data, target, test_size = 0.25)
+
+machine = MultinomialNB()
+
+machine.fit(data_training, target_training)
+
+predictions = machine.predict(data_test)
+
+print(confusion_matrix(target_test, predictions))
+print(accuracy_score(target_test, predictions))
+
 
 
 
