@@ -5,9 +5,11 @@ import string
 import nltk
 
 from nltk.corpus import stopwords
-nltk.download('stopwords')
+#nltk.download('stopwords')
 
 from nltk.stem import WordNetLemmatizer
+
+from sklearn.feature_extraction.text import CountVectorizer
 
 review_text = []
 review_stars = []
@@ -40,4 +42,12 @@ def pre_processing(text):
 	return [lemmatizer.lemmatize(word.lower()) for word in text_processed.split() if word.lower() not in stopwords.words('english')]
 
 print(pre_processing("This is some text. Hello!!! This is pretending to be a review. Reviews are funny."))
+
+count_vectorize_transformer = CountVectorizer(analyzer=pre_processing).fit(data)
+
+print(count_vectorize_transformer.get_feature_names())
+
+data = count_vectorize_transformer.transform(data)
+
+
 
