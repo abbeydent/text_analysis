@@ -27,7 +27,7 @@ dataset = dataset[0:3000]
 
 print(dataset.shape)
 
-dataset = dataset[(dataset['stars']==1)|(dataset['stars']==5)]
+dataset = dataset[(dataset['stars']==1)|(dataset['stars']==3)|(dataset['stars']==5)]
 
 print(dataset.shape)
 
