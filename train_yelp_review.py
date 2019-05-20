@@ -68,5 +68,16 @@ print(confusion_matrix(target_test, predictions))
 print(accuracy_score(target_test, predictions))
 
 
+test_review = "It's a horrible resturant. It's expensive!!!!"
+test_review_transformed = count_vectorize_transformer.transform([test_review])
+prediction = machine.predict(test_review_transformed)
+prediction_prob = machine.predict_proba(test_review_transformed)
+print(prediction)
+print(prediction_prob)
 
-
+test_review = "Baby Shark Duh duh duh duh duh"
+test_review_transformed = count_vectorize_transformer.transform([test_review])
+prediction = machine.predict(test_review_transformed)
+prediction_prob = machine.predict_proba(test_review_transformed)
+print(prediction)
+print(prediction_prob)
